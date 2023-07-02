@@ -14,7 +14,7 @@ import com.helpme.exoplayersample.databinding.ActivityVideoPlayerBinding
 
 class VideoPlayerActivity : Activity() {
 
-    private lateinit var simpleExoPlayer: ExoPlayer
+    private lateinit var exP: ExoPlayer
     private lateinit var binding: ActivityVideoPlayerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,19 +32,19 @@ class VideoPlayerActivity : Activity() {
 
         val mediaSourceFactory = DefaultMediaSourceFactory(mediaDataSourceFactory)
 
-        simpleExoPlayer = ExoPlayer.Builder(applicationContext)
+        exP = ExoPlayer.Builder(applicationContext)
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
 
-        simpleExoPlayer.addMediaSource(mediaSource)
+        exP.addMediaSource(mediaSource)
 
-        simpleExoPlayer.playWhenReady = true
-        binding.playerView.player = simpleExoPlayer
-        binding.playerView.requestFocus()
+        exP.playWhenReady = true
+        binding.playerView.player = exP
+       // binding.playerView.requestFocus()
     }
 
     fun releasePlayer() {
-        simpleExoPlayer.release()
+        exP.release()
     }
 
     public override fun onStart() {
@@ -64,7 +64,7 @@ class VideoPlayerActivity : Activity() {
         releasePlayer()
     }
 
-    companion object {
+    object {
         const val STREAM_URL = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
     }
 }
